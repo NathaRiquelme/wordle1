@@ -15,8 +15,8 @@ document
   .getElementById("gameSetupForm")
   .addEventListener("submit", async (e) => {
     e.preventDefault();
-    rows = parseInt(document.getElementById("rows").value); // Remove 'const'
-    columns = parseInt(document.getElementById("columns").value); // Remove 'const'
+    rows = parseInt(document.getElementById("rows").value);
+    columns = parseInt(document.getElementById("columns").value);
 
     // Fetch the secret word based on the number of columns (word length)
     secretWord = await fetchSecretWord(columns);
@@ -52,7 +52,7 @@ function initializeGame(rows, columns) {
   document.getElementById("gameInstructions").style.display = "none";
   document.getElementById("game-wrapper").style.display = "block";
 
-  // Create game rows and keyboard
+  // Create game rows
   createGameRows(rows, columns);
 
   // Initialize input handlers
