@@ -1,0 +1,508 @@
+:root {
+  --color: #363e52;
+  --scroll_width: 17px;
+  --font_family: "Montserrat", "Open Sans", sans-serif;
+  --bg: #fff;
+  --bg2: #fff;
+  --bg3: #f2efe4;
+  --bg4: #f2e4e7;
+  --bg5: #e5ecff;
+  --color2: #8b887d;
+  --color3: #a35868;
+  --color4: #3d424b;
+  --color5: #3d424b;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  color: var(--color);
+  font: 18px var(--font_family);
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+header .logo {
+  width: 100%;
+  margin: 0 auto;
+  height: 22px;
+  text-align: center;
+  margin-top: 5px;
+}
+header .cont {
+  height: 45px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+.cont {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+header .lang {
+  color: #414a5e;
+  font-size: 14px;
+  font-weight: 700;
+  height: 34px;
+  padding: 0 8px;
+  background: #ebedf3;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 34px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+header .buttons {
+  margin-left: auto;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+}
+header .buttons button.button {
+  color: #414a5e;
+  display: flex;
+  width: 34px;
+  height: 34px;
+  padding: 3px;
+  transition: 0.2s linear;
+  background: #ebedf3;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 2px;
+}
+header .buttons button {
+  font-family: var(--font_family);
+  cursor: pointer;
+  border: 0;
+  border-radius: 7px;
+}
+header .buttons button.button svg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 24px;
+  height: 24px;
+}
+header button.give_up {
+  color: #414a5e;
+  height: 34px;
+  padding: 0 14px;
+  font-size: 13px;
+  margin-left: 10px;
+  border-radius: 7px;
+  background: #ebedf3;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: 0.2s;
+  cursor: pointer;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+hr,
+input {
+  overflow: visible;
+}
+.Game {
+  -ms-user-select: none;
+}
+.Row,
+.Row-letter {
+  display: flex;
+  justify-content: center;
+}
+.Row-letter {
+  align-items: center;
+  border: 2px solid #dee1e9;
+  font-size: 28px;
+  font-weight: 700;
+  height: 56px;
+  margin: 3px;
+  text-transform: uppercase;
+  width: 56px;
+  border-radius: 5px;
+  color: #393e4c;
+  background: #fbfcff;
+}
+
+sup {
+  top: -1.5em;
+  width: 0;
+  font-size: 11px;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.message {
+  display: block;
+  font-size: 12px;
+  color: var(--color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: #edf0f7;
+  text-align: center;
+  width: max-content;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 3px;
+  margin-left: auto;
+  margin-right: auto;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+#game-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height for centering */
+}
+.Game-keyboard {
+  margin: 10px auto;
+  width: 600px; /* Set the width to 600px */
+  height: 156px; /* Set the height to 156px */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure even distribution of rows */
+}
+.Game-keyboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+.Game-keyboard-button {
+  align-items: center;
+  background-color: #dce1ed;
+  color: inherit;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex: 1 1;
+  font-size: 17px;
+  font-weight: 700;
+  justify-content: center;
+  margin: 3px;
+  min-height: 46px;
+  padding: 3px;
+  text-decoration: inherit;
+  text-transform: capitalize;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+  -webkit-touch-callout: none;
+  transition: background-color 0.2s;
+}
+@media (max-width: 991px) {
+  .Game-keyboard-button {
+    font-size: 16px;
+  }
+}
+/* To dim the entire game background */
+.dim-background {
+  opacity: 0.5;
+  pointer-events: none; /* Disable interactions with the game while dimmed */
+}
+
+/* Ensure the modal is fully visible and above the dimmed content */
+.modal_finish {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensure modal appears above everything */
+  opacity: 1;
+  pointer-events: auto; /* Enable interaction with the modal */
+}
+
+.modal_finish.active {
+  display: block; /* Ensure the modal is shown */
+}
+
+.mini_modal.active {
+  display: block;
+}
+.mini_modal {
+  position: relative;
+  left: 50%;
+  height: 100%;
+  display: none;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  background: var(--bg2);
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  padding: 20px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.mini_modal .top {
+  color: #2e3239;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 7px;
+  display: flex;
+  min-height: 38px;
+  padding: 0 25px;
+  text-align: center;
+  background: var(--bg5);
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.mini_modal .data {
+  padding: 10px 0 20px;
+}
+.mini_modal .cont {
+  max-width: 580px;
+  padding: 0 10px;
+}
+.mini_modal .close {
+  color: #818aa3;
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 0;
+  background: none; /* No background color */
+  transition: 0.2s;
+}
+
+.mini_modal .close:before,
+.mini_modal .close:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: #818aa3; /* Color of the 'X' */
+}
+
+.mini_modal .close:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.mini_modal .close:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Hover effect for the close button */
+.mini_modal .close:hover:before,
+.mini_modal .close:hover:after {
+  background-color: #000;
+}
+.cont {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+.mini_modal .info {
+  padding-top: 5px;
+  text-align: center;
+}
+.mini_modal .info .text {
+  color: #2e3239;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.mini_modal .info * + .word {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.mini_modal .info .word {
+  --margin-bottom: 6px;
+  margin-bottom: calc(var(--margin-bottom) * -1);
+  --margin-left: 6px;
+  margin-left: calc(var(--margin-left) * -1);
+  justify-content: center;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+.mini_modal .info .word .letter {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  width: 54px;
+  height: 54px;
+  margin-bottom: var(--margin-bottom);
+  margin-left: var(--margin-left);
+  text-align: center;
+  border-radius: 5px;
+  background: #a4aec4;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.yellow_letter {
+  background-color: #f3c237 !important;
+}
+.green_letter {
+  background-color: #79b851 !important;
+}
+.mini_modal .info .text-tiles {
+  line-height: 32px;
+  text-align: left;
+  margin: 0 60px 10px;
+  padding: 10px 15px;
+  background: #edf0f5;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+/* Close button for modal */
+.close-modal-btn {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* To ensure the keyboard and game rows are dimmed but still visible */
+#game-wrapper {
+  position: relative; /* So that modal can be positioned on top */
+}
+
+#gameSetupForm {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 400px;
+  text-align: center;
+  background: #edf0f5;
+  border-radius: 10px;
+}
+
+#gameSetupForm label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--color4);
+}
+
+#gameSetupForm input[type="number"] {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid var(--color2);
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#gameSetupForm input[type="submit"] {
+  background-color: #79b851;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#gameSetupForm input[type="submit"]:hover {
+  background-color: #a4aec4;
+}
+#gameTitle {
+  font-size: 24px;
+  color: var(--color4);
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#gameInstructions {
+  font-size: 16px;
+  color: var(--color2);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+.logo a {
+  text-decoration: none; /* Removes underline */
+}
+.logo .word {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center; /* Center the word */
+  align-items: center;
+  margin-left: -6px; /* Adjust spacing between letters */
+}
+
+.logo .word .letter {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  width: 48px; /* Adjust the size of the letter blocks */
+  height: 48px;
+  margin-left: 6px;
+  text-align: center;
+  border-radius: 5px;
+  background: #a4aec4; /* Default background color */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the colored letters */
+.yellow_letter {
+  background-color: #f3c237 !important;
+}
+
+.green_letter {
+  background-color: #79b851 !important;
+}

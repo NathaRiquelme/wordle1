@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"
+    />
+    <title>Nath Wordl!🔤</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/">
+          <div class="word flex">
+            <div class="letter">W</div>
+            <div class="letter yellow_letter">O</div>
+            <div class="letter">R</div>
+            <div class="letter yellow_letter">D</div>
+            <div class="letter green_letter">L</div>
+          </div>
+        </a>
+      </div>
+      <div class="cont flex">
+        <a class="lang mini_modal_link" href="">
+          <span class="icon fi fi-us"></span>
+          "EN"
+        </a>
+        <button type="button" class="give_up" style="display: none">
+          Give up
+        </button>
+        <div class="buttons flex">
+          <button type="button" class="button mini_modal_link">
+            <img src="./assets/img/help-circle.svg" alt="How to play" />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <h1 id="gameTitle">Welcome</h1>
+    <p id="gameInstructions">
+      Submit the number of rows (attempts) and columns (letters per word) to
+      start the game. You must guess the hidden word in the number of tries
+      you've selected, and after each guess, the color of the letters changes to
+      show how close you are.
+    </p>
+
+    <form id="gameSetupForm">
+      <label for="rows">Number of rows (Guesses):</label>
+      <input type="number" name="rows" id="rows" min="1" required />
+
+      <label for="columns">Number of columns (Letters per word):</label>
+      <input type="number" name="columns" id="columns" min="1" required />
+
+      <input type="submit" value="Start Game" />
+    </form>
+
+    <div id="game-wrapper" style="display: none">
+      <div class="game_rows"></div>
+      <!-- Keyboard Wrapper -->
+      <div class="Game-keyboard">
+        <!-- First Row -->
+        <div class="Game-keyboard-row">
+          <div class="Game-keyboard-button">q</div>
+          <div class="Game-keyboard-button">w</div>
+          <div class="Game-keyboard-button">e</div>
+          <div class="Game-keyboard-button">r</div>
+          <div class="Game-keyboard-button">t</div>
+          <div class="Game-keyboard-button">y</div>
+          <div class="Game-keyboard-button">u</div>
+          <div class="Game-keyboard-button">i</div>
+          <div class="Game-keyboard-button">o</div>
+          <div class="Game-keyboard-button">p</div>
+        </div>
+        <!-- Second Row -->
+        <div class="Game-keyboard-row">
+          <div class="Game-keyboard-button">a</div>
+          <div class="Game-keyboard-button">s</div>
+          <div class="Game-keyboard-button">d</div>
+          <div class="Game-keyboard-button">f</div>
+          <div class="Game-keyboard-button">g</div>
+          <div class="Game-keyboard-button">h</div>
+          <div class="Game-keyboard-button">j</div>
+          <div class="Game-keyboard-button">k</div>
+          <div class="Game-keyboard-button">l</div>
+        </div>
+        <!-- Third Row -->
+        <div class="Game-keyboard-row">
+          <div class="Game-keyboard-button" data-key="enter">Enter</div>
+          <div class="Game-keyboard-button">z</div>
+          <div class="Game-keyboard-button">x</div>
+          <div class="Game-keyboard-button">c</div>
+          <div class="Game-keyboard-button">v</div>
+          <div class="Game-keyboard-button">b</div>
+          <div class="Game-keyboard-button">n</div>
+          <div class="Game-keyboard-button">m</div>
+          <div class="Game-keyboard-button" data-key="backspace">
+            <!-- Backspace SVG Icon -->
+            <svg
+              width="28"
+              height="28"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9.75L14.25 12M14.25 12l2.25 2.25M14.25 12l2.25-2.25M14.25
+                 12L12 14.25M9.42 19.17L3.046 12.796a1.125 1.125 0 010-1.59L9.42
+                 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 012.25
+                 2.25v10.5a2.25 2.25 0 01-2.25 2.25H10.215c-.298
+                 0-.585-.119-.795-.33z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="game-wrapper">
+      <div class="game_rows">
+        <div class="message" style="display: none">
+          <b>You won!🏆</b>
+        </div>
+      </div>
+    </div>
+    <!-- Losing Modal -->
+    <div class="modal_finish" style="display: none">
+      <div class="top lost">You lost!</div>
+      <div class="data">
+        <div class="cont" style="height: auto !important">
+          <div class="desc">The answer was:</div>
+          <div class="word">
+            <span></span>
+          </div>
+          <a
+            class="definition"
+            href="https://www.dictionary.com"
+            target="_blank"
+          >
+            What does this word mean?
+          </a>
+          <div class="restart_btn">
+            <button type="button" onclick="window.location.reload()">
+              New game
+            </button>
+          </div>
+          <div class="or_text">or press Enter to play again</div>
+        </div>
+      </div>
+      <button type="button" class="close" onclick="closeModal()">X</button>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div class="mini_modal" id="modal_info" style="display: none">
+      <div class="top">How to play</div>
+      <div class="data">
+        <div class="cont">
+          <div class="info">
+            <div class="text">
+              To start the game, just enter any word that matches the chosen
+              word length. For example, if you selected a 5-letter word:
+            </div>
+            <div class="word flex">
+              <div class="letter">T</div>
+              <div class="letter yellow_letter">A</div>
+              <div class="letter">B</div>
+              <div class="letter yellow_letter">L</div>
+              <div class="letter green_letter">E</div>
+            </div>
+            <div class="text text-tiles">
+              <b class="grey_text">T</b>, <b class="grey_text">B</b> aren't in
+              the target word at all.
+              <br />
+              <b class="yellow_text">A</b>, <b class="yellow_text">L</b> is in
+              the word but in the wrong spot.
+              <br />
+              <b class="green_text">E</b> is in the word and in the correct
+              spot.
+            </div>
+            <div class="text">
+              Another try to find matching letters in the target word.
+            </div>
+            <div class="word flex">
+              <div class="letter green_letter">F</div>
+              <div class="letter green_letter">L</div>
+              <div class="letter green_letter">A</div>
+              <div class="letter">S</div>
+              <div class="letter">H</div>
+            </div>
+            <div class="text">So close!</div>
+            <div class="word flex">
+              <div class="letter green_letter">F</div>
+              <div class="letter green_letter">L</div>
+              <div class="letter green_letter">A</div>
+              <div class="letter green_letter">M</div>
+              <div class="letter green_letter">E</div>
+            </div>
+            <div class="text"><b>Got it! 🏆</b></div>
+          </div>
+        </div>
+      </div>
+      <!-- Close icon -->
+      <button type="button" class="close" aria-label="Close"></button>
+    </div>
+  </body>
+</html>
